@@ -1,10 +1,14 @@
 import React, {FC} from 'react';
+import {Route, Routes} from 'react-router-dom'
+import BlogPage from "../pages/BlogPage";
+import BlogItemDetail from "./BlogItemDetail";
 
 const AppRouter:FC = () => {
     return (
-        <div>
-
-        </div>
+        <Routes>
+            <Route path={'/'} element={<BlogPage/>}/>
+            <Route path={'/:id'} element={<BlogItemDetail/>}/>
+        </Routes>
     );
 };
 
