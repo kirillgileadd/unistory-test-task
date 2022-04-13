@@ -7,6 +7,8 @@ import BlogList from "../components/BlogList";
 import AddPostModal from "../components/modals/AddPostModal";
 import Loader from "../components/Loader";
 import {BackgroundPaper} from "../components/UI/BackgroundPaper";
+import {SubmitHandler} from "react-hook-form";
+import {IPost} from "../models/IPost";
 
 const BlogPageWrapper = styled(Box)`
   display: flex;
@@ -22,13 +24,13 @@ const BlogListWrapper = styled(Box)`
   margin-bottom: 12px;
   width: 100%;
   height: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 162px) 
 `
 
 const BlogPage: FC = () => {
     const [visibleAddModal, setVisibleAddModal] = useState<boolean>(false)
-    const {fetchPosts, clearPosts} = useActions()
-    const {posts, loading} = useTypeSelector(state => state.blog)
+    const {fetchPosts, clearPosts, addPost} = useActions()
+    const {posts, loading, currentPost} = useTypeSelector(state => state.blog)
 
     useEffect(() => {
         fetchPosts()
@@ -36,6 +38,11 @@ const BlogPage: FC = () => {
             clearPosts()
         }
     }, [])
+
+    const onAddSubmit: SubmitHandler<IPost> = (data) => {
+        setVisibleAddModal(false)
+        addPost(data)
+    }
 
     return (
         <BackgroundPaper>
@@ -54,6 +61,8 @@ const BlogPage: FC = () => {
                     + Добавить
                 </Button>
                 <AddPostModal
+                    currentPost={currentPost}
+                    onAddSubmit={onAddSubmit}
                     open={visibleAddModal}
                     onClose={() => setVisibleAddModal(false)}
                 />

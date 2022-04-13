@@ -8,4 +8,7 @@ export default class BlogService {
     static async addPost(post: IPost): Promise<AxiosResponse<IPost>> {
         return axios.post<IPost>('https://6256ecc5e07d2c9a670f94ca.mockapi.io/posts', post)
     }
+    static async getCurrentPost(id: number): Promise<AxiosResponse<IPost>> {
+        return axios.get<IPost>(`https://6256ecc5e07d2c9a670f94ca.mockapi.io/posts/${id}`)
+    }
 }
