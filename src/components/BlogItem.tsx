@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {IPost} from "../models/IPost";
 import {Box, Button, Paper, Typography} from "@mui/material";
+import {Link} from "react-router-dom";
 import styled from "@emotion/styled";
 
 const BodyText = styled(Typography)`
@@ -53,7 +54,9 @@ const BlogItem: FC<IPost> = ({body, title, id}) => {
                     </BodyText>
                 </Box>
             </Paper>
-            <Button fullWidth variant='contained'>Перейти</Button>
+            <Link to={`/${id}`} style={{textDecoration: 'none', color: 'inherit', width: '100%'}}>
+                <Button fullWidth variant='contained'>Перейти</Button>
+            </Link>
         </BlogItemInner>
     );
 };

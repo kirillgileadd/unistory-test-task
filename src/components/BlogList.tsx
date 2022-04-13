@@ -9,7 +9,7 @@ interface BlogListProps {
 
 const BlogList: FC<BlogListProps> = ({posts}) => {
     return (
-        <Grid container spacing={15}>
+        <Grid container spacing={10}>
             {posts.map(post =>
                 <Grid item xs={4} key={post.id} justifyContent='center'>
                     <BlogItem {...post}/>

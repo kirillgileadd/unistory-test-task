@@ -4,7 +4,9 @@ import {Box} from "@mui/material";
 import styled from "@emotion/styled";
 
 const AppWrapper = styled(Box)`
-    padding: 3rem;
+  padding: 3rem;
+  max-width: 1300px;
+  margin: 0 auto;
 `
 
 function App() {

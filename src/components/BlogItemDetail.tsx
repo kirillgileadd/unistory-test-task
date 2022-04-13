@@ -1,10 +1,11 @@
 import React from 'react';
+import {BackgroundPaper} from "./UI/BackgroundPaper";
 
 const BlogItemDetail = () => {
     return (
-        <div>
+        <BackgroundPaper>
             BlogItemDetail
-        </div>
+        </BackgroundPaper>
     );
 };
 

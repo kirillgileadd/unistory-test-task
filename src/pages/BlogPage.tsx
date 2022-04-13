@@ -1,15 +1,14 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useActions} from "../hooks/useAction";
 import {useTypeSelector} from "../hooks/useTypeSelector";
-import {Box, Button, Paper, Typography} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import BlogList from "../components/BlogList";
 import AddPostModal from "../components/modals/AddPostModal";
 import Loader from "../components/Loader";
+import {BackgroundPaper} from "../components/UI/BackgroundPaper";
 
-const BlogPageWrapper = styled(Paper)`
-  padding: 3rem;
-  background-color: #f0f0f0;
+const BlogPageWrapper = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,16 +27,18 @@ const BlogListWrapper = styled(Box)`
 
 const BlogPage: FC = () => {
     const [visibleAddModal, setVisibleAddModal] = useState<boolean>(false)
-    const {fetchPosts} = useActions()
+    const {fetchPosts, clearPosts} = useActions()
     const {posts, loading} = useTypeSelector(state => state.blog)
-    console.log(loading);
 
     useEffect(() => {
         fetchPosts()
+        return function clearPostState () {
+            clearPosts()
+        }
     }, [])
 
     return (
-        <Box>
+        <BackgroundPaper>
             <BlogPageWrapper>
                 <Typography variant='h3' textAlign='center' sx={{mb: 4}}>
                     Блог
@@ -57,7 +58,7 @@ const BlogPage: FC = () => {
                     onClose={() => setVisibleAddModal(false)}
                 />
             </BlogPageWrapper>
-        </Box>
+        </BackgroundPaper>
     );
 };
 

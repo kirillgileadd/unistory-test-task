@@ -10,7 +10,8 @@ export enum BlogActionEnum {
     SET_POST = "SET_POST",
     SET_POST_SUCCESS = " SET_POSTS_SUCCESS",
     SET_POST_ERROR = "SET_POSTS_ERROR",
-    SET_NEW_POST = "SET_NEW_POST"
+    SET_NEW_POST = "SET_NEW_POST",
+    CLEAR_POST = "CLEAR_POST"
 }
 
 export interface SetBlogAction {
@@ -32,5 +33,9 @@ export interface SetBlogErrorAction {
     payload: string;
 }
 
+export interface ClearPosts {
+    type: BlogActionEnum.CLEAR_POST;
+}
 
-export type BlogAction = SetBlogErrorAction | SetBlogSuccessAction | SetBlogAction | SetNewPostAction
+
+export type BlogAction = SetBlogErrorAction | SetBlogSuccessAction | SetBlogAction | SetNewPostAction | ClearPosts

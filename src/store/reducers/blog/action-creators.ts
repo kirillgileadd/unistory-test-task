@@ -1,4 +1,11 @@
-import {BlogActionEnum, SetBlogAction, SetBlogErrorAction, SetBlogSuccessAction, SetNewPostAction} from "./types";
+import {
+    BlogActionEnum,
+    ClearPosts,
+    SetBlogAction,
+    SetBlogErrorAction,
+    SetBlogSuccessAction,
+    SetNewPostAction
+} from "./types";
 import {IPost} from "../../../models/IPost";
 import {AppDispatch} from "../../index";
 import BlogService from "../../../api/BlogService";
@@ -18,6 +25,9 @@ export const BlogActionCreators = {
     setPostsError: (error: string): SetBlogErrorAction => ({
         type: BlogActionEnum.SET_POST_ERROR,
         payload: error
+    }),
+    clearPosts: (): ClearPosts => ({
+        type: BlogActionEnum.CLEAR_POST,
     }),
     fetchPosts: () => async (dispatch: AppDispatch) => {
         try {

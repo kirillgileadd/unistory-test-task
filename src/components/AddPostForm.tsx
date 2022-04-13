@@ -27,12 +27,14 @@ const AddPostForm: FC<AddPostFormProps> = ({onClose}) => {
                 position: "relative",
                 '& .MuiTextField-root': {mb: "12px", backgroundColor: '#fff'},
             }}
+            display='flex'
+            flexDirection='column'
             component='form'
             onSubmit={handleSubmit(onSubmit)}
         >
             <TextField
                 fullWidth
-                {...register("title")}
+                {...register("title", { required: true })}
                 id="standard-search"
                 label='Название'
                 error={!!errors.title}
@@ -42,20 +44,30 @@ const AddPostForm: FC<AddPostFormProps> = ({onClose}) => {
                 fullWidth
                 rows={4}
                 multiline
-                {...register("body")}
+                {...register("body", { required: true })}
                 id="standard-search"
                 label="Текст"
                 error={!!errors.body}
                 helperText={errors.body?.message}
             />
-            <Button
-                type='submit'
-                variant='contained'
-                fullWidth
-                disabled={loading}
-            >
-                Сохранить
-            </Button>
+            <Box alignSelf='flex-end'>
+                <Button
+                    onClick={onClose}
+                    sx={{mr: 1}}
+                    color='error'
+                    type='button'
+                    variant='contained'
+                >
+                    Отмена
+                </Button>
+                <Button
+                    type='submit'
+                    variant='contained'
+                    disabled={loading}
+                >
+                    Сохранить
+                </Button>
+            </Box>
         </Box>
     );
 };
