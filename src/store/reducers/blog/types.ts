@@ -7,13 +7,19 @@ export interface BlogState {
 }
 
 export enum BlogActionEnum {
-    SET_POST = "SET_POSTS",
+    SET_POST = "SET_POST",
     SET_POST_SUCCESS = " SET_POSTS_SUCCESS",
-    SET_POST_ERROR = "SET_POSTS_ERROR"
+    SET_POST_ERROR = "SET_POSTS_ERROR",
+    SET_NEW_POST = "SET_NEW_POST"
 }
 
 export interface SetBlogAction {
     type: BlogActionEnum.SET_POST;
+}
+
+export interface SetNewPostAction {
+    type: BlogActionEnum.SET_NEW_POST;
+    payload: IPost
 }
 
 export interface SetBlogSuccessAction {
@@ -27,4 +33,4 @@ export interface SetBlogErrorAction {
 }
 
 
-export type BlogAction = SetBlogErrorAction | SetBlogSuccessAction | SetBlogAction
+export type BlogAction = SetBlogErrorAction | SetBlogSuccessAction | SetBlogAction | SetNewPostAction

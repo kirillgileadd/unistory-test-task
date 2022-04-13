@@ -11,8 +11,8 @@ const BlogList: FC<BlogListProps> = ({posts}) => {
     return (
         <Grid container spacing={15}>
             {posts.map(post =>
-                <Grid item xs={4} justifyContent='center'>
-                    <BlogItem key={post.id} {...post}/>
+                <Grid item xs={4} key={post.id} justifyContent='center'>
+                    <BlogItem {...post}/>
                 </Grid>
             )}
         </Grid>

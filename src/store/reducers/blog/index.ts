@@ -14,6 +14,8 @@ export default function EventReducer(state = initialState, action: BlogAction): 
             return {...state, posts: action.payload, loading: false}
         case BlogActionEnum.SET_POST_ERROR:
             return {...state, error: action.payload, loading: false}
+        case BlogActionEnum.SET_NEW_POST:
+            return {...state, posts: [...state.posts, action.payload]}
         default:
             return state;
     }
