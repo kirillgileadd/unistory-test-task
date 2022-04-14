@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {BackgroundPaper} from "../components/UI/BackgroundPaper";
 import {Box, Button, styled, Typography} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
@@ -15,21 +15,29 @@ const BlogItemDetailWrapper = styled(Box)`
 
 const BlogItemDetail = () => {
     const {id} = useParams()
+    const navigate = useNavigate()
     const {postLoading, currentPost} = useTypeSelector(state => state.blog)
-    const {fetchCurrentPost, clearCurrentPost} = useActions()
+    const {fetchCurrentPost, clearCurrentPost, changePost, deletePost} = useActions()
 
     useEffect(() => {
         fetchCurrentPost(Number(id))
         return function clearCurrentPostState () {
             clearCurrentPost()
         }
-    }, [])
+    }, []);
 
     const onPutSubmit: SubmitHandler<IPost> = (data) => {
-        console.log(data);
+        let newPost = {
+            ...data,
+            id: Number(id)
+        }
+        changePost(newPost, navigate)
     }
 
-    const navigate = useNavigate()
+    const onDeletePost = () => {
+        deletePost(Number(id), navigate)
+    }
+
     return (
         <BackgroundPaper>
             <BlogItemDetailWrapper>
@@ -45,7 +53,11 @@ const BlogItemDetail = () => {
                         <Typography sx={{mb: 3}} variant='h6'>
                             Запись: {currentPost.title}
                         </Typography>
-                        <BlogItemForm currentPost={currentPost} onSubmit={onPutSubmit}/>
+                        <BlogItemForm
+                            currentPost={currentPost}
+                            onSubmit={onPutSubmit}
+                            onDelete={onDeletePost}
+                        />
                     </Box>
                 }
             </BlogItemDetailWrapper>

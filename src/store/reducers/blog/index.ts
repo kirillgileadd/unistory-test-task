@@ -23,6 +23,20 @@ export default function EventReducer(state = initialState, action: BlogAction): 
             return {...state, error: action.payload, loading: false}
         case BlogActionEnum.SET_NEW_POST:
             return {...state, posts: [...state.posts, action.payload]}
+        case BlogActionEnum.ON_CHANGE_POST:
+            return {
+                ...state, posts: state.posts.map(post => {
+                    if (post.id === action.payload.id) {
+                        return {
+                            ...action.payload,
+                        }
+                    } else {
+                        return {
+                            ...post
+                        }
+                    }
+                })
+            }
         case BlogActionEnum.CLEAR_POST:
             return {...state, posts: []}
         case BlogActionEnum.CLEAR_CURRENT_POST:

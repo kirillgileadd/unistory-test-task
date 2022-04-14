@@ -1,6 +1,6 @@
 import {
     BlogActionEnum, ClearCurrentPost,
-    ClearPosts,
+    ClearPosts, DeletePostAction, OnChangePostAction,
     SetBlogAction,
     SetBlogErrorAction,
     SetBlogSuccessAction, SetCurrentPostAction, SetCurrentPostSuccessAction,
@@ -9,6 +9,7 @@ import {
 import {IPost} from "../../../models/IPost";
 import {AppDispatch} from "../../index";
 import BlogService from "../../../api/BlogService";
+import {NavigateFunction} from "react-router/lib/hooks";
 
 export const BlogActionCreators = {
     setPosts: (): SetBlogAction => ({
@@ -32,6 +33,14 @@ export const BlogActionCreators = {
     setPostsError: (error: string): SetBlogErrorAction => ({
         type: BlogActionEnum.SET_POST_ERROR,
         payload: error
+    }),
+    setChangePost: (post: IPost): OnChangePostAction => ({
+        type: BlogActionEnum.ON_CHANGE_POST,
+        payload: post
+    }),
+    setDeletePost: (post: IPost): DeletePostAction => ({
+        type: BlogActionEnum.DELETE_POST,
+        payload: post
     }),
     clearPosts: (): ClearPosts => ({
         type: BlogActionEnum.CLEAR_POST,
@@ -63,6 +72,24 @@ export const BlogActionCreators = {
             dispatch(BlogActionCreators.setNewPost(response.data))
         } catch (e) {
             dispatch(BlogActionCreators.setPostsError('post doesn\'t add'))
+        }
+    },
+    changePost: (post: IPost, navigate : NavigateFunction) => async (dispatch: AppDispatch) => {
+        try {
+            const response = await BlogService.putPost(post, post.id)
+            dispatch(BlogActionCreators.setChangePost(response.data))
+            navigate(-1)
+        } catch (e) {
+            dispatch(BlogActionCreators.setPostsError('post doesn\'t change'))
+        }
+    },
+    deletePost: (id: number, navigate : NavigateFunction) => async (dispatch: AppDispatch) => {
+        try {
+            const response = await BlogService.deletePost(id)
+            dispatch(BlogActionCreators.setDeletePost(response.data))
+            navigate(-1)
+        } catch (e) {
+            dispatch(BlogActionCreators.setPostsError('post doesn\'t change'))
         }
     }
 }

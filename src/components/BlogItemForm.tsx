@@ -8,9 +8,10 @@ interface AddPostFormProps {
     onClose?: () => void;
     onSubmit: SubmitHandler<IPost>
     currentPost?: IPost
+    onDelete?: () => void;
 }
 
-const BlogItemForm: FC<AddPostFormProps> = ({onClose, onSubmit, currentPost}) => {
+const BlogItemForm: FC<AddPostFormProps> = ({onClose, onSubmit, currentPost, onDelete}) => {
     const {register, handleSubmit, watch, formState: {errors}} = useForm<IPost>({
         defaultValues: {
             title: currentPost?.title,
@@ -51,6 +52,7 @@ const BlogItemForm: FC<AddPostFormProps> = ({onClose, onSubmit, currentPost}) =>
                 currentPost?.title ?
                     <Box display='flex' justifyContent='space-between'>
                         <Button
+                            onClick={onDelete}
                             sx={{mr: 1}}
                             color='error'
                             variant='contained'
