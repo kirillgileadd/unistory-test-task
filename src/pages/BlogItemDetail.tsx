@@ -50,7 +50,7 @@ const BlogItemDetail = () => {
                     sx={{mb: 2}}
                 >
                     Назад</Button>
-                {postLoading && !currentPost?.body ? <Loader/>
+                {postLoading && !currentPost ? <Loader/>
                     :
                     <Box>
                         <Typography sx={{mb: 3}} variant='h6'>
