@@ -4,13 +4,11 @@ export interface BlogState {
     posts: IPost[]
     loading: boolean
     error: string;
-    postLoading: boolean
     currentPost: IPost | null
 }
 
 export enum BlogActionEnum {
     SET_POST = "SET_POST",
-    SET_CURRENT_POST = "SET_CURRENT_POST",
     SET_POST_SUCCESS = " SET_POSTS_SUCCESS",
     SET_CURRENT_POST_SUCCESS = "SET_CURRENT_POST_SUCCESS",
     SET_POST_ERROR = "SET_POSTS_ERROR",
@@ -23,10 +21,6 @@ export enum BlogActionEnum {
 
 export interface SetBlogAction {
     type: BlogActionEnum.SET_POST;
-}
-
-export interface SetCurrentPostAction {
-    type: BlogActionEnum.SET_CURRENT_POST;
 }
 
 export interface SetNewPostAction {
@@ -73,7 +67,6 @@ export type BlogAction = SetBlogErrorAction
     | SetBlogAction
     | SetNewPostAction
     | ClearPosts
-    | SetCurrentPostAction
     | SetCurrentPostSuccessAction
     | ClearCurrentPost
     | OnChangePostAction

@@ -19,7 +19,7 @@ const BlogItemDetailWrapper = styled(Box)`
 const BlogItemDetail = () => {
     const {id} = useParams()
     const navigate = useNavigate()
-    const {postLoading, currentPost} = useTypeSelector(state => state.blog)
+    const {currentPost} = useTypeSelector(state => state.blog)
     const {fetchCurrentPost, clearCurrentPost, changePost, deletePost} = useActions()
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const BlogItemDetail = () => {
                     sx={{mb: 2}}
                 >
                     Назад</Button>
-                {postLoading && !currentPost ? <Loader/>
+                {!currentPost ? <Loader/>
                     :
                     <Box>
                         <Typography sx={{mb: 3}} variant='h6'>

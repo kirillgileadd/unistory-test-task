@@ -7,7 +7,6 @@ import {
     SetBlogAction,
     SetBlogErrorAction,
     SetBlogSuccessAction,
-    SetCurrentPostAction,
     SetCurrentPostSuccessAction,
     SetNewPostAction
 } from "./types";
@@ -19,9 +18,6 @@ import {NavigateFunction} from "react-router/lib/hooks";
 export const BlogActionCreators = {
     setPosts: (): SetBlogAction => ({
         type: BlogActionEnum.SET_POST,
-    }),
-    setCurrentPost: (): SetCurrentPostAction => ({
-        type: BlogActionEnum.SET_CURRENT_POST,
     }),
     setNewPost: (post: IPost): SetNewPostAction => ({
         type: BlogActionEnum.SET_NEW_POST,
@@ -64,7 +60,6 @@ export const BlogActionCreators = {
     },
     fetchCurrentPost: (id: number) => async (dispatch: AppDispatch) => {
         try {
-            dispatch(BlogActionCreators.setCurrentPost())
             const response = await BlogService.getCurrentPost(id)
             dispatch(BlogActionCreators.setCurrentPostSuccess(response.data))
         } catch (e) {
