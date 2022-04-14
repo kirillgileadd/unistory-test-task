@@ -3,7 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 import BlogPage from "../pages/BlogPage";
 import BlogItemDetail from "../pages/BlogItemDetail";
 
-const AppRouter:FC = () => {
+const AppRouter: FC = () => {
     return (
         <Routes>
             <Route path={'/'} element={<BlogPage/>}/>

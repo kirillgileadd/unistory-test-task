@@ -5,7 +5,7 @@ export interface BlogState {
     loading: boolean
     error: string;
     postLoading: boolean
-    currentPost: IPost
+    currentPost: IPost | null
 }
 
 export enum BlogActionEnum {

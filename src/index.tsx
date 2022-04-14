@@ -17,7 +17,7 @@ const inputGlobalStyles = <GlobalStyles styles={{
         padding: 0,
         boxSizing: 'border-box'
     },
-}} />
+}}/>
 
 root.render(
     <BrowserRouter>

@@ -1,12 +1,11 @@
-import {BlogState, BlogAction, BlogActionEnum} from "./types";
-import {IPost} from "../../../models/IPost";
+import {BlogAction, BlogActionEnum, BlogState} from "./types";
 
 const initialState: BlogState = {
     posts: [],
     error: '',
     loading: false,
     postLoading: false,
-    currentPost: {} as IPost,
+    currentPost:  null,
 }
 
 export default function EventReducer(state = initialState, action: BlogAction): BlogState {
@@ -40,7 +39,7 @@ export default function EventReducer(state = initialState, action: BlogAction): 
         case BlogActionEnum.CLEAR_POST:
             return {...state, posts: []}
         case BlogActionEnum.CLEAR_CURRENT_POST:
-            return {...state, currentPost: {title: '', body: '', id: 0}}
+            return {...state, currentPost: null}
         default:
             return state;
     }

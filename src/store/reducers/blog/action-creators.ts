@@ -1,9 +1,14 @@
 import {
-    BlogActionEnum, ClearCurrentPost,
-    ClearPosts, DeletePostAction, OnChangePostAction,
+    BlogActionEnum,
+    ClearCurrentPost,
+    ClearPosts,
+    DeletePostAction,
+    OnChangePostAction,
     SetBlogAction,
     SetBlogErrorAction,
-    SetBlogSuccessAction, SetCurrentPostAction, SetCurrentPostSuccessAction,
+    SetBlogSuccessAction,
+    SetCurrentPostAction,
+    SetCurrentPostSuccessAction,
     SetNewPostAction
 } from "./types";
 import {IPost} from "../../../models/IPost";
@@ -74,7 +79,7 @@ export const BlogActionCreators = {
             dispatch(BlogActionCreators.setPostsError('post doesn\'t add'))
         }
     },
-    changePost: (post: IPost, navigate : NavigateFunction) => async (dispatch: AppDispatch) => {
+    changePost: (post: IPost, navigate: NavigateFunction) => async (dispatch: AppDispatch) => {
         try {
             const response = await BlogService.putPost(post, post.id)
             dispatch(BlogActionCreators.setChangePost(response.data))
@@ -83,7 +88,7 @@ export const BlogActionCreators = {
             dispatch(BlogActionCreators.setPostsError('post doesn\'t change'))
         }
     },
-    deletePost: (id: number, navigate : NavigateFunction) => async (dispatch: AppDispatch) => {
+    deletePost: (id: number, navigate: NavigateFunction) => async (dispatch: AppDispatch) => {
         try {
             const response = await BlogService.deletePost(id)
             dispatch(BlogActionCreators.setDeletePost(response.data))

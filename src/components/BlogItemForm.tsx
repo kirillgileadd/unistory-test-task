@@ -3,16 +3,15 @@ import {Box, Button, TextField} from "@mui/material";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IPost} from "../models/IPost";
 
-
 interface AddPostFormProps {
     onClose?: () => void;
     onSubmit: SubmitHandler<IPost>
-    currentPost?: IPost
+    currentPost: null | IPost
     onDelete?: () => void;
 }
 
 const BlogItemForm: FC<AddPostFormProps> = ({onClose, onSubmit, currentPost, onDelete}) => {
-    const {register, handleSubmit, watch, formState: {errors}} = useForm<IPost>({
+    const {register, handleSubmit, formState: {errors}} = useForm<IPost>({
         defaultValues: {
             title: currentPost?.title,
             body: currentPost?.body

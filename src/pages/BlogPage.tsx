@@ -24,7 +24,7 @@ const BlogListWrapper = styled(Box)`
   margin-bottom: 12px;
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - 162px) 
+  min-height: calc(100vh - 162px)
 `
 
 const BlogPage: FC = () => {
@@ -34,7 +34,7 @@ const BlogPage: FC = () => {
 
     useEffect(() => {
         fetchPosts()
-        return function clearPostState () {
+        return function clearPostState() {
             clearPosts()
         }
     }, [])

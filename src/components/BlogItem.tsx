@@ -36,7 +36,7 @@ const BlogItem: FC<IPost> = ({body, title, id}) => {
                 justifyContent='center'
                 alignItems='center'
             >
-                <Typography sx={{mb: 1,overflowWrap: "anywhere"}} variant='h6' noWrap>
+                <Typography sx={{mb: 1, overflowWrap: "anywhere"}} variant='h6' noWrap>
                     {title}
                 </Typography>
             </Box>
@@ -49,7 +49,7 @@ const BlogItem: FC<IPost> = ({body, title, id}) => {
                     justifyContent='center'
                     alignItems='center'
                 >
-                    <BodyText  variant='body1'>
+                    <BodyText variant='body1'>
                         {body}
                     </BodyText>
                 </Box>

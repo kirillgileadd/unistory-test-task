@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 import {BackgroundPaper} from "../components/UI/BackgroundPaper";
 import {Box, Button, styled, Typography} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
@@ -10,8 +10,11 @@ import {SubmitHandler} from "react-hook-form";
 import {IPost} from "../models/IPost";
 
 const BlogItemDetailWrapper = styled(Box)`
-  min-height: calc(100vh - 162px)`
-
+  min-height: calc(100vh - 162px);
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 68px);
+  }
+`
 
 const BlogItemDetail = () => {
     const {id} = useParams()
@@ -21,7 +24,7 @@ const BlogItemDetail = () => {
 
     useEffect(() => {
         fetchCurrentPost(Number(id))
-        return function clearCurrentPostState () {
+        return function clearCurrentPostState() {
             clearCurrentPost()
         }
     }, []);
@@ -47,11 +50,11 @@ const BlogItemDetail = () => {
                     sx={{mb: 2}}
                 >
                     Назад</Button>
-                {postLoading && currentPost ? <Loader/>
+                {postLoading && !currentPost?.body ? <Loader/>
                     :
                     <Box>
                         <Typography sx={{mb: 3}} variant='h6'>
-                            Запись: {currentPost.title}
+                            Запись: {currentPost?.title}
                         </Typography>
                         <BlogItemForm
                             currentPost={currentPost}
