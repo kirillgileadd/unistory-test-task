@@ -38,7 +38,9 @@ const BlogItemDetail = () => {
     }
 
     const onDeletePost = () => {
-        deletePost(Number(id), navigate)
+        if(window.confirm("Вы действительно хотите удалить?")) {
+            deletePost(Number(id), navigate)
+        }
     }
 
     return (
