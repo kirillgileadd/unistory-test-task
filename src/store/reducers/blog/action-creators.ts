@@ -51,6 +51,7 @@ export const BlogActionCreators = {
     }),
     fetchPosts: () => async (dispatch: AppDispatch) => {
         try {
+            dispatch(BlogActionCreators.setPostsError(''))
             dispatch(BlogActionCreators.setPosts())
             const response = await BlogService.getPost()
             dispatch(BlogActionCreators.setPostsSuccess(response.data))
@@ -60,6 +61,7 @@ export const BlogActionCreators = {
     },
     fetchCurrentPost: (id: number) => async (dispatch: AppDispatch) => {
         try {
+            dispatch(BlogActionCreators.setPostsError(''))
             const response = await BlogService.getCurrentPost(id)
             dispatch(BlogActionCreators.setCurrentPostSuccess(response.data))
         } catch (e) {
