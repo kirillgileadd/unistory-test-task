@@ -63,7 +63,7 @@ export const BlogActionCreators = {
             const response = await BlogService.getCurrentPost(id)
             dispatch(BlogActionCreators.setCurrentPostSuccess(response.data))
         } catch (e) {
-            dispatch(BlogActionCreators.setPostsError('something Error'))
+            dispatch(BlogActionCreators.setPostsError('There is no post with this id'))
         }
     },
     addPost: (post: IPost) => async (dispatch: AppDispatch) => {

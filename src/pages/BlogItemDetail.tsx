@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {BackgroundPaper} from "../components/UI/BackgroundPaper";
 import {Box, Button, styled, Typography} from "@mui/material";
-import {useNavigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {useTypeSelector} from "../hooks/useTypeSelector";
 import {useActions} from "../hooks/useAction";
 import Loader from "../components/Loader";
@@ -19,7 +19,7 @@ const BlogItemDetailWrapper = styled(Box)`
 const BlogItemDetail = () => {
     const {id} = useParams()
     const navigate = useNavigate()
-    const {currentPost} = useTypeSelector(state => state.blog)
+    const {currentPost, error} = useTypeSelector(state => state.blog)
     const {fetchCurrentPost, clearCurrentPost, changePost, deletePost} = useActions()
 
     useEffect(() => {
@@ -41,6 +41,10 @@ const BlogItemDetail = () => {
         if(window.confirm("Вы действительно хотите удалить?")) {
             deletePost(Number(id), navigate)
         }
+    }
+
+    if(error === 'There is no post with this id') {
+        return <Navigate to={'/'}/>
     }
 
     return (
